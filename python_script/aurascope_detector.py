@@ -1,6 +1,6 @@
 """
 AuraScope - Advanced Multi-Smell Code Quality Analyzer & Refactoring Engine
-Author: Muhammad Soman Saeed (FA23-BSE-A-138)
+Author: Muhammad Soman Saeed
 Course: Software Re-Engineering (CSC327)
 
 Description:
@@ -366,7 +366,7 @@ def analyze_java_project(folder_path):
                     "Use 'Extract Class' refactoring to move the sub-module attributes and methods to the new class.",
                     "If the class has subclasses that only use a subset of features, consider 'Extract Subclass' or 'Extract Interface'."
                 ],
-                "reason": f"Class '{class_name}' is too large ({class_loc} lines, {len(fields)} fields, {len(methods)} methods) and has very low cohesion (TCC = {round(tcc, 2)}). It has too many responsibilities."
+                "reason": f"Class '{class_name}' is too large ({class_loc} lines, {len(fields)} fields, {len(methods)} methods) and has very low cohesion (TCC = {round(tcc, 2)}). It has too many [...]
             })
             
         # Analyze methods
@@ -433,10 +433,10 @@ def analyze_java_project(folder_path):
                         },
                         "refactoringSteps": [
                             f"Move the envied method '{m['name']}' to class '{envied_class}' using the 'Move Method' pattern.",
-                            f"In class '{class_name}', replace the original method body with a delegation call (e.g., `return {envied_obj}.{m['name']}(...);`) or update all call sites to call '{envied_class}' directly.",
+                            f"In class '{class_name}', replace the original method body with a delegation call (e.g., `return {envied_obj}.{m['name']}(...);`) or update all call sites to call '{e[...]
                             f"Remove the '{envied_class}' parameter from the method signature inside '{envied_class}' and replace references to `{envied_obj}.` with `this.`."
                         ],
-                        "reason": f"Method '{m['name']}()' accesses fields/methods of object '{envied_obj}' of type '{envied_class}' ({external} times) much more than its own class '{class_name}' ({internal} times)."
+                        "reason": f"Method '{m['name']}()' accesses fields/methods of object '{envied_obj}' of type '{envied_class}' ({external} times) much more than its own class '{class_name}'[...]
                     })
                     
             # 3. BRAIN METHOD DETECTION
@@ -469,7 +469,7 @@ def analyze_java_project(folder_path):
                         "Extract these logical blocks into small, well-named private helper methods inside the class using the 'Extract Method' pattern.",
                         "If the method is bloated due to holding too many local variables, consider refactoring it using the 'Replace Method with Method Object' pattern."
                     ],
-                    "reason": f"Method '{m['name']}()' has high complexity (Complexity = {m_complexity}, LOC = {m_loc}, Max Nesting Depth = {m_nesting}). It does too much and is hard to test and maintain."
+                    "reason": f"Method '{m['name']}()' has high complexity (Complexity = {m_complexity}, LOC = {m_loc}, Max Nesting Depth = {m_nesting}). It does too much and is hard to test and [...]
                 })
 
     # 4. DATA CLUMPS DETECTION
@@ -523,7 +523,7 @@ def analyze_java_project(folder_path):
                         f"Replace the parameter clump in method '{occ['method']}()' with a single parameter of type '{suggested_class}'.",
                         "Update the calls to this method by instantiating and passing the new parameter object."
                     ],
-                    "reason": f"Method '{occ['method']}()' parameters ({', '.join(occ['names'])}) form a Data Clump of size {len(clump_types)}. This same parameter group appears in {len(occurrences)} methods across the codebase."
+                    "reason": f"Method '{occ['method']}()' parameters ({', '.join(occ['names'])}) form a Data Clump of size {len(clump_types)}. This same parameter group appears in {len(occurrenc[...]
                 })
 
     # Prepare final output structure
