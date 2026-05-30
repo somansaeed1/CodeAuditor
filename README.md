@@ -10,12 +10,14 @@
 ## 📌 Table of Contents
 
 - [Overview](#overview)
+- [Screenshots](#screenshots)
 - [Key Features](#key-features)
 - [Supported Code Smells](#supported-code-smells)
 - [System Architecture](#system-architecture)
 - [Technology Stack](#technology-stack)
 - [Project Structure](#project-structure)
 - [Installation & Setup](#installation--setup)
+- [Running Locally](#-running-locally)
 - [Usage Guide](#usage-guide)
 - [API Documentation](#api-documentation)
 - [Component Details](#component-details)
@@ -28,13 +30,20 @@
 
 ## 📖 Overview
 
-**CodeAuditor** is a comprehensive, full-stack web application designed to detect and analyze code smells in Java source code. It combines advanced static analysis with an interactive user interface to help development teams identify architectural issues, improve code maintainability, and implement targeted refactoring strategies.
+**CodeAuditor** is a comprehensive, full-stack web application designed to detect and analyze code smells in Java source code. It combines advanced static analysis with an interactive user interface to help developers identify and refactor problematic code patterns.
 
 The tool performs in-depth analysis across **4 major code smell categories**:
 - **Feature Envy** – Methods overly dependent on external objects
 - **God Class** – Classes with excessive responsibilities and low cohesion
 - **Brain Method** – Complex methods with high cyclomatic complexity
 - **Data Clumps** – Repeated parameter groups indicating missing domain objects
+
+---
+
+## 📸 Screenshots
+
+> Screenshots and demo walkthrough coming soon.
+> To see the tool in action, clone the repo and run it locally following the setup guide below.
 
 ---
 
@@ -222,42 +231,42 @@ public Order placeOrder(Address address, Customer customer) { }
 ## 🏗️ System Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        CodeAuditor Workspace                         │
-└─────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────┐
+│                        CodeAuditor Workspace                           │
+└────────────────────────────────────────────────────────────────────────┘
 
-┌─────────────────────────┬──────────────────────────┬────────────────┐
-│    Frontend Layer       │   Backend Layer          │   Analysis     │
-│   (React + Vite)        │   (Express.js)           │   Engine       │
-├─────────────────────────┼──────────────────────────┼────────────────┤
-│                         │                          │                │
-│ ┌─────────────────────┐ │  ┌──────────────────┐   │  ┌───────────┐ │
-│ │ App.jsx             │ │  │ server.js        │   │  │ Python    │ │
-│ │ - Tab Navigation    │ │  │ - Express App    │───┼─→│ Detector  │ │
-│ │ - State Management  │ │  │ - CORS Setup     │   │  │ Engine    │ │
-│ │ - Theme Toggle      │ │  │ - Port 5000      │   │  │           │ │
-│ └─────────────────────┘ │  └──────────────────┘   │  └───────────┘ │
-│                         │                          │                │
-│ ┌─────────────────────────────────────────────┐   │  ┌────────────┐│
-│ │           Frontend Components                │   │  │ Java File  ││
-│ ├─────────────────────────────────────────────┤   │  │ Analysis   ││
-│ │ • Dashboard.jsx           - Main view       │   │  └────────────┘│
-│ │ • ProjectManager.jsx      - ZIP uploads     │   │                │
-│ │ • FolderScanner.jsx       - Local paths     │   │  ┌────────────┐│
-│ │ • CodeSandbox.jsx         - Code snippets   │   │  │ Report     ││
-│ │ • RefactorGuide.jsx       - Refactor tips   │   │  │ Generation ││
-│ │ • ScanHistory.jsx         - Past scans      │   │  └────────────┘│
-│ │ • SmellyFilesView.jsx     - Smell details   │   │                │
-│ │ • ThemeToggle.jsx         - Dark/Light      │   │                │
-│ └─────────────────────────────────────────────┘   │                │
-│                                                     │                │
-│ ┌───────────────────────┐  ┌──────────────────┐   │                │
-│ │ utils/detector.js     │  │ utils/            │   │                │
-│ │ - Client-side analysis│  │ refactoring.js    │   │                │
-│ │ - Feature Envy (JS)   │  │ - Code templates  │   │                │
-│ └───────────────────────┘  │ - Suggestions     │   │                │
-│                            └──────────────────┘   │                │
-└─────────────────────────┴──────────────────────────┴────────────────┘
+┌─────────────────────────┬──────────────────────────┬──────────────────┐
+│    Frontend Layer       │   Backend Layer          │   Analysis       │
+│   (React + Vite)        │   (Express.js)           │   Engine         │
+├─────────────────────────┼──────────────────────────┼──────────────────┤
+│                         │                          │                  │
+│ ┌─────────────────────┐ │  ┌──────────────────┐   │  ┌───────────┐   │
+│ │ App.jsx             │ │  │ server.js        │   │  │ Python    │   │
+│ │ - Tab Navigation    │ │  │ - Express App    │───┼─→│ Detector  │   │
+│ │ - State Management  │ │  │ - CORS Setup     │   │  │ Engine    │   │
+│ │ - Theme Toggle      │ │  │ - Port 5000      │   │  │           │   │
+│ └─────────────────────┘ │  └──────────────────┘   │  └───────────┘   │
+│                         │                          │                  │
+│ ┌─────────────────────────────────────────────┐   │  ┌────────────┐  │
+│ │           Frontend Components                │   │  │ Java File  │  │
+│ ├─────────────────────────────────────────────┤   │  │ Analysis   │  │
+│ │ • Dashboard.jsx           - Main view       │   │  └────────────┘  │
+│ │ • ProjectManager.jsx      - ZIP uploads     │   │                  │
+│ │ • FolderScanner.jsx       - Local paths     │   │  ┌────────────┐  │
+│ │ • CodeSandbox.jsx         - Code snippets   │   │  │ Report     │  │
+│ │ • RefactorGuide.jsx       - Refactor tips   │   │  │ Generation │  │
+│ │ • ScanHistory.jsx         - Past scans      │   │  └────────────┘  │
+│ │ • SmellyFilesView.jsx     - Smell details   │   │                  │
+│ │ • ThemeToggle.jsx         - Dark/Light      │   │                  │
+│ └─────────────────────────────────────────────┘   │                  │
+│                                                     │                  │
+│ ┌───────────────────────┐  ┌──────────────────┐   │                  │
+│ │ utils/detector.js     │  │ utils/            │   │                  │
+│ │ - Client-side analysis│  │ refactoring.js    │   │                  │
+│ │ - Feature Envy (JS)   │  │ - Code templates  │   │                  │
+│ └───────────────────────┘  │ - Suggestions     │   │                  │
+│                            └──────────────────┘   │                  │
+└─────────────────────────┴──────────────────────────┴──────────────────┘
 ```
 
 ### Data Flow Diagram
@@ -343,7 +352,7 @@ CodeAuditor/
 │
 ├── 🐍 python_script/                  # Static Analysis Engine
 │   ├── aurascope_detector.py          # Main detector (4 smell types)
-│   └── FA23-BSE-A-138-FeatureEnvy.py # Legacy Feature Envy detector
+│   └── feature_envy_detector.py       # Feature Envy detector module
 │
 ├── 📂 scanning_files/                 # Sample Java files for quick scanning
 │   ├── BankAccount.java
@@ -415,7 +424,7 @@ CodeAuditor/
 ### Step 1: Clone or Download the Project
 ```bash
 # If using git
-git clone <repository-url> CodeAuditor
+git clone https://github.com/somansaeed1/CodeAuditor CodeAuditor
 cd CodeAuditor
 
 # Or extract the provided ZIP file
@@ -457,6 +466,71 @@ npm run frontend
 - **Frontend**: `http://localhost:5173`
 - **Backend API**: `http://localhost:5000`
 - **Status Check**: `http://localhost:5000/api/status`
+
+---
+
+## 🖥️ Running Locally
+
+To run **CodeAuditor** locally and test it with your own Java code:
+
+### Quick Start (3 minutes)
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/somansaeed1/CodeAuditor
+   cd CodeAuditor
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm run install-all
+   ```
+   This installs both backend (Node.js/Express) and frontend (React/Vite) dependencies.
+
+3. **Ensure Python is installed**
+   ```bash
+   python --version
+   ```
+   Should display Python 3.x. If not, [download Python](https://www.python.org/) and ensure it's in your system PATH.
+
+4. **Start the application**
+   ```bash
+   npm start
+   ```
+   This launches both the backend (Express on port 5000) and frontend (Vite on port 5173) in parallel.
+
+5. **Open in your browser**
+   ```
+   http://localhost:5173
+   ```
+
+### Testing with Sample Code
+
+Once the application is running:
+
+1. **Navigate to the "Code Sandbox" tab** in the application
+2. **Paste any Java code snippet** into the editor, for example:
+   ```java
+   public class SampleClass {
+       private int value;
+       
+       public void processData(DataObject obj) {
+           int x = obj.getValue();          // External access
+           int y = obj.getSecondValue();    // External access
+           int z = obj.getThirdValue();     // External access
+           System.out.println(x + y + z);
+       }
+   }
+   ```
+3. **Click "Analyze"** to run the detector
+4. **View the results** on the Dashboard tab with detected code smells and refactoring suggestions
+
+### Scanning Local Projects
+
+Alternatively, use the **Folder Scanner** tab to analyze a local Java project:
+- Enter the path to your Java project directory
+- Adjust detection thresholds if needed
+- Click "Scan Folder" to analyze all Java files
+- View comprehensive results with detailed metrics
 
 ---
 
@@ -749,23 +823,23 @@ User Request
     ├─→ JSON Parsing
     └─→ File Validation
          ↓
-    [Route Handler]
-    ├─→ /api/status → Health check
-    ├─→ /api/default-path → Workspace info
-    ├─→ /api/scan-folder → Folder analysis
-    ├─→ /api/scan-code → Code snippet analysis
-    ├─→ /api/projects/upload → ZIP upload
-    ├─→ /api/projects → List projects
-    └─→ /api/projects/:name/report → Get report
-         ↓
-    [Python Execution] (if analysis needed)
-    ├─→ aurascope_detector.py
-    ├─→ File processing
-    ├─→ Smell detection
-    └─→ JSON serialization
-         ↓
-    [Response Builder]
-    └─→ JSON Response
+     [Route Handler]
+     ├─→ /api/status → Health check
+     ├─→ /api/default-path → Workspace info
+     ├─→ /api/scan-folder → Folder analysis
+     ├─→ /api/scan-code → Code snippet analysis
+     ├─→ /api/projects/upload → ZIP upload
+     ├─→ /api/projects → List projects
+     └─→ /api/projects/:name/report → Get report
+          ↓
+     [Python Execution] (if analysis needed)
+     ├─→ aurascope_detector.py
+     ├─→ File processing
+     ├─→ Smell detection
+     └─→ JSON serialization
+          ↓
+     [Response Builder]
+     └─→ JSON Response
 ```
 
 ---
@@ -982,9 +1056,9 @@ npm run backend
 This project is licensed under the **MIT License** – See LICENSE file for details.
 
 **Course**: Software Re-Engineering (CSC327)
-**Author**: Muhammad Soman Saeed (FA23-BSE-A-138)
-**Institution**: [Your Institution]
-**Academic Year**: Fall 2023
+**Author**: Muhammad Soman Saeed
+**Institution**: COMSATS University Islamabad, Lahore Campus
+**Academic Year**: Spring 2026
 
 ---
 
@@ -998,30 +1072,5 @@ This project is licensed under the **MIT License** – See LICENSE file for deta
 
 ---
 
-## 📞 Support & Contact
-
-For issues, feature requests, or questions:
-- **GitHub Issues**: [Repository URL]
-- **Email**: [Your Email]
-- **Documentation**: See README.md sections above
-
----
-
-## 🎯 Future Enhancements
-
-- [ ] Support for additional languages (Python, C#, JavaScript)
-- [ ] Advanced visualizations (dependency graphs, smell timelines)
-- [ ] Machine learning-based smell detection
-- [ ] Integration with CI/CD pipelines
-- [ ] Real-time collaborative analysis
-- [ ] Detailed refactoring automation
-- [ ] Plugin architecture for custom detectors
-- [ ] Web-based report generation and sharing
-- [ ] Historical trend analysis
-- [ ] Team collaboration features
-
----
-
-**Last Updated**: May 23, 2026
-**Version**: 2.0.0
-**Status**: Production Ready ✅
+**Contact**: saeedmsoman74372@gmail.com
+**Repository**: https://github.com/somansaeed1/CodeAuditor
