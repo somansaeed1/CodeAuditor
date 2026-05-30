@@ -1,4 +1,8 @@
 ﻿node_modules/
+backend/uploads/
+backend/projects/temp_scan/
+__pycache__/
+*.pyc
 .env
 .DS_Store
 dist/

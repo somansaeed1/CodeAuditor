@@ -1,8 +1,8 @@
 @echo off
 title AuraScope Startup Wizard
-echo ======================================================================
+echo.
 echo   AURASCOPE: MULTI-SMELL DETECTOR & REFACTORING ENGINE
-echo   Muhammad Soman Saeed (FA23-BSE-A-138)
+echo.
 echo ======================================================================
 echo.
 

@@ -1,7 +1,5 @@
 """
 Feature Envy Detector for Java Source Code
-Author: Muhammad Soman Saeed (FA23-BSE-A-138)
-Course: Software Re-Engineering (CSC327)
 
 Description:
     A script that detects Feature Envy code smell in Java source files.
@@ -305,7 +303,6 @@ def analyze_folder(folder_path, json_output=False):
     # Standard Text Print Output
     print("=" * 70)
     print("  FEATURE ENVY DETECTOR")
-    print("  Author: Muhammad Soman Saeed (FA23-BSE-A-138)")
     print("  Course: Software Re-Engineering (CSC327)")
     print("=" * 70)
     print(f"\n  Scanning folder: {folder_path}")

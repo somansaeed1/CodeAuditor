@@ -1,7 +1,5 @@
 """
 AuraScope - Advanced Multi-Smell Code Quality Analyzer & Refactoring Engine
-Author: Muhammad Soman Saeed (FA23-BSE-A-138)
-Course: Software Re-Engineering (CSC327)
 
 Description:
     Analyzes Java source code files for 4 code smells:
