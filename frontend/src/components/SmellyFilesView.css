@@ -1,0 +1,399 @@
+.smelly-files-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+.files-view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.files-view-header .header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.files-view-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.files-view-header p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-secondary);
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.sort-controls label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.sort-select {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.sort-select:hover,
+.sort-select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.empty-smells {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 64px 32px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.empty-smells svg {
+  opacity: 0.5;
+}
+
+.files-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.file-item {
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+  border: 1px solid var(--border-color);
+}
+
+.file-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  gap: 12px;
+}
+
+.file-item:hover .file-item-header {
+  background: rgba(99, 102, 241, 0.02);
+}
+
+[data-theme="dark"] .file-item:hover .file-item-header {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.file-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.file-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.file-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  word-break: break-all;
+}
+
+.file-stat {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.file-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.smell-badges-inline {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.smell-badge-small {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.smell-badge-small.envy {
+  background: rgba(168, 85, 247, 0.1);
+  color: #a855f7;
+}
+
+.smell-badge-small.god {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.smell-badge-small.brain {
+  background: rgba(251, 146, 60, 0.1);
+  color: #fb923c;
+}
+
+.smell-badge-small.clump {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.expand-icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+  transform: rotate(0deg);
+}
+
+.expand-icon.open {
+  transform: rotate(180deg);
+  color: var(--primary-color);
+}
+
+.file-item-details {
+  border-top: 1px solid var(--border-color);
+  padding: 16px 20px;
+  background: rgba(99, 102, 241, 0.01);
+}
+
+[data-theme="dark"] .file-item-details {
+  background: rgba(99, 102, 241, 0.03);
+}
+
+.detections-in-file {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detection-in-file {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.detection-in-file:hover {
+  border-color: var(--primary-color);
+  background: var(--bg-tertiary);
+}
+
+.detection-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.smell-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.smell-icon.envy {
+  background: rgba(168, 85, 247, 0.1);
+  color: #a855f7;
+}
+
+.smell-icon.god {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.smell-icon.brain {
+  background: rgba(251, 146, 60, 0.1);
+  color: #fb923c;
+}
+
+.smell-icon.clump {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.detection-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.detection-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.detection-title strong {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.smell-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.smell-pill.envy {
+  background: rgba(168, 85, 247, 0.2);
+  color: #a855f7;
+}
+
+.smell-pill.god {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.smell-pill.brain {
+  background: rgba(251, 146, 60, 0.2);
+  color: #fb923c;
+}
+
+.smell-pill.clump {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+}
+
+.line-info {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.detection-reason {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 4px 0 0 0;
+  line-height: 1.4;
+}
+
+.detection-action {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+
+.detection-in-file:hover .detection-action {
+  color: var(--primary-color);
+  transform: translateX(4px);
+}
+
+@media (max-width: 1024px) {
+  .file-header-right {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .smell-badges-inline {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .files-view-header {
+    flex-direction: column;
+  }
+
+  .sort-controls {
+    width: 100%;
+  }
+
+  .sort-select {
+    flex: 1;
+  }
+
+  .file-item-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .file-header-left {
+    width: 100%;
+  }
+
+  .file-header-right {
+    width: 100%;
+  }
+}

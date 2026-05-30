@@ -1,0 +1,131 @@
+{
+  "status": "success",
+  "thresholds": {
+    "externalThreshold": 3,
+    "envyRatio": 2,
+    "godClassLoc": 250,
+    "godClassFields": 8,
+    "godClassMethods": 12,
+    "godClassTcc": 0.33,
+    "brainMethodLoc": 45,
+    "brainMethodComplexity": 8,
+    "brainMethodNesting": 3
+  },
+  "summary": {
+    "filesAnalyzed": 3,
+    "filesWithSmell": 3,
+    "totalDetections": 4,
+    "smellsByType": {
+      "Feature Envy": 2,
+      "God Class": 0,
+      "Brain Method": 0,
+      "Data Clump": 2
+    }
+  },
+  "detections": [
+    {
+      "smellType": "Feature Envy",
+      "file": "PaymentProcessor.java",
+      "path": "D:\\LECTURES\\SEMESTER\\6TH SEMESTER\\SRE\\Assignment No 4\\Feature Envy Detection Tool\\backend\\projects\\TestProject\\PaymentProcessor.java",
+      "className": "PaymentProcessor",
+      "details": {
+        "methodName": "processPayment",
+        "line": 23,
+        "internalAccesses": 0,
+        "externalAccesses": 10,
+        "enviedObject": "account",
+        "enviedClass": "BankAccount"
+      },
+      "actualPlace": {
+        "file": "BankAccount.java",
+        "className": "BankAccount"
+      },
+      "refactoringSteps": [
+        "Move the envied method 'processPayment' to class 'BankAccount' using the 'Move Method' pattern.",
+        "In class 'PaymentProcessor', replace the original method body with a delegation call (e.g., `return account.processPayment(...);`) or update all call sites to call 'BankAccount' directly.",
+        "Remove the 'BankAccount' parameter from the method signature inside 'BankAccount' and replace references to `account.` with `this.`."
+      ],
+      "reason": "Method 'processPayment()' accesses fields/methods of object 'account' of type 'BankAccount' (10 times) much more than its own class 'PaymentProcessor' (0 times)."
+    },
+    {
+      "smellType": "Feature Envy",
+      "file": "PaymentProcessor.java",
+      "path": "D:\\LECTURES\\SEMESTER\\6TH SEMESTER\\SRE\\Assignment No 4\\Feature Envy Detection Tool\\backend\\projects\\TestProject\\PaymentProcessor.java",
+      "className": "PaymentProcessor",
+      "details": {
+        "methodName": "formatReceipt",
+        "line": 59,
+        "internalAccesses": 0,
+        "externalAccesses": 7,
+        "enviedObject": "receipt",
+        "enviedClass": "Receipt"
+      },
+      "actualPlace": {
+        "file": "Unknown (External Class)",
+        "className": "Receipt"
+      },
+      "refactoringSteps": [
+        "Move the envied method 'formatReceipt' to class 'Receipt' using the 'Move Method' pattern.",
+        "In class 'PaymentProcessor', replace the original method body with a delegation call (e.g., `return receipt.formatReceipt(...);`) or update all call sites to call 'Receipt' directly.",
+        "Remove the 'Receipt' parameter from the method signature inside 'Receipt' and replace references to `receipt.` with `this.`."
+      ],
+      "reason": "Method 'formatReceipt()' accesses fields/methods of object 'receipt' of type 'Receipt' (7 times) much more than its own class 'PaymentProcessor' (0 times)."
+    },
+    {
+      "smellType": "Data Clump",
+      "file": "BankAccount.java",
+      "path": "D:\\LECTURES\\SEMESTER\\6TH SEMESTER\\SRE\\Assignment No 4\\Feature Envy Detection Tool\\backend\\projects\\TestProject\\BankAccount.java",
+      "className": "BankAccount",
+      "details": {
+        "methodName": "BankAccount",
+        "line": 15,
+        "clumpedParameters": [
+          "String accountNumber",
+          "String accountHolder",
+          "double balance"
+        ],
+        "occurrencesCount": 2
+      },
+      "actualPlace": {
+        "file": "StringGroup.java",
+        "className": "StringGroup"
+      },
+      "refactoringSteps": [
+        "Create a new class 'StringGroup' containing fields for each of the parameters: String, String, double.",
+        "Add a constructor, getters, and setters to the new class.",
+        "Replace the parameter clump in method 'BankAccount()' with a single parameter of type 'StringGroup'.",
+        "Update the calls to this method by instantiating and passing the new parameter object."
+      ],
+      "reason": "Method 'BankAccount()' parameters (accountNumber, accountHolder, balance) form a Data Clump of size 3. This same parameter group appears in 2 methods across the codebase."
+    },
+    {
+      "smellType": "Data Clump",
+      "file": "Receipt.java",
+      "path": "D:\\LECTURES\\SEMESTER\\6TH SEMESTER\\SRE\\Assignment No 4\\Feature Envy Detection Tool\\backend\\projects\\TestProject\\Receipt.java",
+      "className": "Receipt",
+      "details": {
+        "methodName": "Receipt",
+        "line": 16,
+        "clumpedParameters": [
+          "String receiptId",
+          "String merchantName",
+          "double totalAmount"
+        ],
+        "occurrencesCount": 2
+      },
+      "actualPlace": {
+        "file": "StringGroup.java",
+        "className": "StringGroup"
+      },
+      "refactoringSteps": [
+        "Create a new class 'StringGroup' containing fields for each of the parameters: String, String, double.",
+        "Add a constructor, getters, and setters to the new class.",
+        "Replace the parameter clump in method 'Receipt()' with a single parameter of type 'StringGroup'.",
+        "Update the calls to this method by instantiating and passing the new parameter object."
+      ],
+      "reason": "Method 'Receipt()' parameters (receiptId, merchantName, totalAmount) form a Data Clump of size 3. This same parameter group appears in 2 methods across the codebase."
+    }
+  ],
+  "projectName": "TestProject",
+  "scannedAt": "2026-05-23T13:27:54.118Z"
+}

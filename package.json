@@ -1,0 +1,15 @@
+{
+  "name": "codeauditor-workspace",
+  "version": "2.0.0",
+  "description": "CodeAuditor - Professional Code Quality & Smell Detection Suite",
+  "private": true,
+  "scripts": {
+    "install-all": "npm install --prefix backend && npm install --prefix frontend",
+    "start": "concurrently \"npm run start --prefix backend\" \"npm run dev --prefix frontend\"",
+    "backend": "npm run start --prefix backend",
+    "frontend": "npm run dev --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
